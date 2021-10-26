@@ -1,8 +1,10 @@
+<h1>Tracking</h1>
 # Tracking Management System
 Track employees activitty and projects progressing
 
 # Features
 - Admin Registeration
+- Entering Employees, Departments, And Projects
 - User Login
 - Keep Track Employees Activity
 - Add New Projects To Each Department And Keep Track Of Its Progress
@@ -36,3 +38,4 @@ Signup :
  - Then go to localhost:8000/register and register your admin account.
  - The Uncomment the firest step
  - Go To localhost:8000 and login using the admin account the add employee as you please
+
