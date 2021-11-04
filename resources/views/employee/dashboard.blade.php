@@ -14,11 +14,6 @@
                             <div class="hr"></div>
                             <div class="row">
                                 <div class="col-6">
-<!--                                    <div class="clock">-->
-<!--                                        <div class="hand hour"></div>-->
-<!--                                        <div class="hand minute"></div>-->
-<!--                                        <div class="hand second"></div>-->
-<!--                                    </div>-->
                                     <div class="clock">
                                         <div class="hour">
                                             <div class="h" id="h"></div>

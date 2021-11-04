@@ -98,39 +98,7 @@ function clock(){
    minute.style.transform=`rotateZ(${m}deg)`;
    second.style.transform=`rotateZ(${s}deg)`;
 }
-function startWork(btn) {
-    if (btn.innerHTML == "Start Working Today") {
-        interval1 = setInterval(clock);
-    } else {
-        clearInterval(interval1);
-    }
-}
-//let hourHand = document.querySelector('.hour'),
-//    minuteHand = document.querySelector('.minute'),
-//    secondHand = document.querySelector('.second');
-//var interval;
-//
-//
-//function clock() {
-//    const currentDate = new Date();
-//    const hours = currentDate.getHours();
-//    const minutes = currentDate.getMinutes();
-//    const seconds = currentDate.getSeconds();
-//
-//    const secondsFraction = seconds / 60;
-//    const minutesFraction = (secondsFraction + minutes) / 60;
-//    const hoursFraction = (minutesFraction + hours) / 12;
-//
-//    const secondsRotate = secondsFraction * 360;
-//    const minutesRotate = minutesFraction * 360;
-//    const hoursRotate = hoursFraction * 360;
-//
-//    secondHand.style.transform = `rotate(${secondsRotate}deg)`;
-//    minuteHand.style.transform = `rotate(${minutesRotate}deg)`;
-//    hourHand.style.transform = `rotate(${hoursRotate}deg)`;
-//}
-
-
+setInterval(clock);
 // upload profile picture
 var profileImgs = document.getElementsByClassName("profile-img"),
     imgBox = document.getElementById("profile-img"),

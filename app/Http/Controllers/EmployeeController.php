@@ -502,6 +502,13 @@ class EmployeeController extends Controller
         session_start();
         if(session('user') != null ){
             DB::table('tasks')->where('id',$id)->update(['progress' => $request->progress]);
+            $projectId = (DB::table('tasks')->where('id',$id)->get('project'))[0]->project;
+            $tasks = DB::table('tasks')->where('project', $projectId)->get('progress');
+            
+            $projecProgress = 0 ;
+            foreach($tasks as $task){$projecProgress += $task->progress;}
+            $projecProgress = $projecProgress/count($tasks);
+            DB::table('projects')->where('id',$projectId)->update(['progress' => $projecProgress]);
             return redirect('mytasks');
         }else{
             return redirect('/');

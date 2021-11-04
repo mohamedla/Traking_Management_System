@@ -20,7 +20,7 @@ class CreateProjectsTable extends Migration
             $table->foreignId('depart')->constrained('departs');
             $table->date('startline');
             $table->date('endline');
-            $table->tinyInteger('progress')->default(0);
+            $table->decimal('progress')->default(0);
             $table->string('descriFile');
 
         });
