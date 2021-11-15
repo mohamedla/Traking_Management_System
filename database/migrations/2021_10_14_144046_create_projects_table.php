@@ -22,7 +22,7 @@ class CreateProjectsTable extends Migration
             $table->date('endline');
             $table->decimal('progress')->default(0);
             $table->string('descriFile');
-
+            $table->timestamps();
         });
     }
 

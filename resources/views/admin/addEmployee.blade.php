@@ -11,6 +11,11 @@
                         <div class="col col-xl-6">
                             <form action="addemp" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
+                                <label>User Name</label>
+                                <div class="input">
+                                    <i class="fa fa-user"></i>
+                                    <input type="text" name="username" required>
+                                </div><br>
                                 <label>Name</label>
                                 <div class="input">
                                     <i class="fa fa-user"></i>

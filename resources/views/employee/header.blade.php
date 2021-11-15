@@ -2,7 +2,8 @@
 
 <head>
     <title>@yield('title')</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style2.css') }}">
     <script src="../scripts/jquery.min.js"></script>
@@ -18,8 +19,6 @@
             </select>
             <img src="{{ asset('images/'.$pic) }}" class="">
             <select id="link">
-                <!-- employee name -->
-                <!-- on the directry  public/js/js2.js -->
                 <option value="profile">{{$name}}</option>
                 <option value="profile">Profile</option>
                 <option value="changePass">Change Password</option>
@@ -39,7 +38,6 @@
                         </div>
                         <div class="col col-8">
                             <h6 class="welcome">Welcome</h6>
-                            <!-- employee name -->
                             <h6>{{$name}}</h6>
                         </div>
                     </div>
@@ -47,7 +45,7 @@
                 <div class="pages">
                     <div>
                         <p class="active">
-                            <i class="fa fa-dashboard"></i>
+                            <i class="fas fa-tachometer-alt"></i>
                             <a href="empdashboard">Dashboard</a>
                             <side></side>
                         </p>
@@ -113,8 +111,15 @@
                         </p>
                     </div>
                     <div>
+                        <p>
+                            <i class="fas fa-comments" style="color: rgb(45, 240, 10);"></i>
+                            <a href="/chat">Chat</a>
+                            <side></side>
+                        </p>
+                    </div>
+                    <div>
                         <p id="logout">
-                            <i class="fa fa-sign-out"></i>
+                            <i class="fas fa-sign-out-alt"  style="color: #bd2130;"></i>
                             <span>Logout</span>
                             <side></side>
                         </p>
@@ -129,13 +134,15 @@
 
 @yield('content')
 
-
+<input type="hidden" id="isonline" name="isonline" value="<?php print session('isonline'); ?>">
 </div>
     </div>
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
     <script src="{{asset('js/jquery.min.js')}}"></script>
     <script src="{{asset('js/propper.js')}}"></script>
-    <script src="{{asset('js/js2.js')}}"></script>>
+    <script src="{{asset('js/js2.js')}}"></script>
+    <script src="{{asset('js/disconnect.js')}}"></script>
+    @yield('script')
 </body>
 
 </html>

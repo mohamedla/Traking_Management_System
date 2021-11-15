@@ -4,22 +4,20 @@
 
 @section('content')
 
-@section('subtitle', 'manage employee')
+@section('subtitle', 'Manage Employee')
 
 <div class="manage-emp">
-                    <!--<h5>Manage Employee</h5>
-                    <hr>-->
-                    <!-- <span class="show">
-                        <label>show</label>
-                        <input type="number" min="1" max="100" class="input">
-                        <label>entries</label>
-                    </span> -->
                     <form action="searchemp" method="POST" enctype="multipart/form-data">
                     @csrf
                         <span class="show">
                           <label>search</label>
                           <input type="text" name="search" required>
-                          <button class="save">Search</button>
+                          <select name="type" class="input" id="search-type" require>
+                                    <option value="0">Departments</option>
+                                    <option value="1">Name</option>
+                                    <option value="2">ID</option>
+                            </select>
+                          <button type="submit" class="save">Search</button>
                         </span>
                     </form>
                     <!-- <br> -->
@@ -28,6 +26,7 @@
                         <thead>
                           <tr>
                             <th scope="col">#</th>
+                            <th scope="col">User Name</th>
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
                             <th scope="col">Department</th>
@@ -40,8 +39,8 @@
                           @for($i=0; $i< count($data) ; $i++)
                           <tr>
                             <th scope="row">{{$i+1}}</th>
-                            <td>
-                                {{$data[$i]->name}}</td>
+                            <td>{{$data[$i]->username}}</td>
+                            <td>{{$data[$i]->name}}</td>
                             <td>{{$data[$i]->email}}</td>
                             <td>{{$data[$i]->depname}}</td>
                             <td>{{$data[$i]->address}}</td>

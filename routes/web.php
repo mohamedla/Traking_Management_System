@@ -13,6 +13,20 @@ Route::get('/register', function(){
     return redirect('/');
 });
 Route::get('view/{fileName}',[SystemEntry::class,'pdfViewer']);
+// Chat section urls
+Route::get('chat',[SystemEntry::class,'chat']);
+Route::post('searchchatuser',[SystemEntry::class,'searchchatuser']);
+Route::get('userdata',[SystemEntry::class,'userdata']);
+Route::post('chatdata',[SystemEntry::class,'chatdata']);
+Route::post('checkchanges',[SystemEntry::class,'checkchanges']);
+Route::post('sendmsg',[SystemEntry::class,'sendmsg']);
+Route::get('disconnected',[SystemEntry::class,'disconnected']);
+Route::get('reconnected',[SystemEntry::class,'reconnected']);
+Route::post('sendfile',[SystemEntry::class,'sendfile']);
+Route::post('sendimg',[SystemEntry::class,'sendimg']);
+Route::post('sendvideo',[SystemEntry::class,'sendvideo']);
+Route::post('sendaudio',[SystemEntry::class,'sendaudio']);
+// End 
 
 Route::post('login', [SystemEntry::class,'login']);
 Route::get('logout', [SystemEntry::class,'logout']);

@@ -64,12 +64,10 @@ class AdminController extends Controller
     public function test(){
         session_start();
         if(session('user') != null){
-            // ->where('date', strtotime(date("Y-m-d")))
             $total = DB::table('departs')->where('id', 1)->get('totemp');
             echo $total;
             echo $total[0]->totemp . "<br>";
             echo is_int((int)$total[0]->totemp);
-            // DB::table('departs')->where('id',1)->update(['totemp'=> ((int)$total[0]->totemp + 1)]);
         }else{
             echo 'LOL';
         }
@@ -81,15 +79,16 @@ class AdminController extends Controller
         if(session('user') != null){
             $admin = DB::table('users')->where('name',session('user'))->get();
             if($admin->count() > 0){
-                $store_path = 'C:\xampp\htdocs\tracking\public\images/';
+                $store_path = 'C:\Users\moham\Documents\GitHub\Traking_Management_System\public\images/';
                 $pic_name = $_FILES['pic']['name'];
-                $stor_name  = $request->name. '.'.explode('.',$pic_name)[1];
+                $stor_name  = $request->username. '.'.explode('.',$pic_name)[1];
                 $stor_tmp = $_FILES['pic']['tmp_name'];
                 move_uploaded_file($stor_tmp, $store_path . $stor_name);
 
                 DB::table('employees')->insert([
                     [
-                        'name' => strtolower($request->name),
+                        'username' => strtolower($request->username),
+                        'name' => ucfirst($request->name),
                         'email' => strtolower($request->email),
                         'pass' => Hash::make($request->pass),
                         'img' => $stor_name,
@@ -128,6 +127,7 @@ class AdminController extends Controller
             $admin = DB::table('users')->where('name',session('user'))->get();
             if($admin->count() > 0){
                 $emp = employees::find($id);
+                $emp->username = strtolower($request->username);
                 $emp->name = strtolower($request->name);
                 $emp->dob = $request->date;
                 $emp->email = strtolower($request->email);
@@ -135,7 +135,9 @@ class AdminController extends Controller
                 $emp->depart = (int)$request->depart;
                 $emp->phone = $request->phone;
                 $emp->address = strtoupper($request->address);
-                $emp->pass = Hash::make($request->pass);
+                if($request->pass != ""){
+                    $emp->pass = Hash::make($request->pass);
+                }
                 $emp->save();
                 return redirect("/manageEmployee");
             }else{
@@ -177,11 +179,31 @@ class AdminController extends Controller
         if(session('user') != null){
             $admin = DB::table('users')->where('name',session('user'))->get();
             if($admin->count() > 0){
-                $data=DB::table('employees')
-                            ->where('name',$request->search)
+                
+                switch ($request->type) {
+                    case '0':
+                        $data=DB::table('employees')
+                            ->where('departs.depname',$request->search)
                                 ->leftJoin("departs", 'employees.depart', '=', 'departs.id')
                                     ->select("employees.*", "departs.depname as depname")
                                         ->get();
+                        break;
+                    case '1':
+                        $data=DB::table('employees')
+                            ->where('employees.name',$request->search)
+                                ->leftJoin("departs", 'employees.depart', '=', 'departs.id')
+                                    ->select("employees.*", "departs.depname as depname")
+                                        ->get();
+                        break;
+                    case '2':
+                        $data=DB::table('employees')
+                            ->where('employees.id',$request->search)
+                                ->leftJoin("departs", 'employees.depart', '=', 'departs.id')
+                                    ->select("employees.*", "departs.depname as depname")
+                                        ->get();
+                        break;
+                }
+                // print $data;
                 return view("admin/manageEmployee",["data"=>$data]);
             }else{
                 return redirect('/');
@@ -203,7 +225,9 @@ class AdminController extends Controller
                 $data=DB::table('employees')
                             ->leftJoin("departs", 'employees.depart', '=', 'departs.id')
                                 ->select("employees.*", "departs.depname as depname")
-                                    ->get();
+                                    ->orderBy("departs.depname")
+                                        ->orderBy("employees.name")
+                                            ->get();
                 return view("admin/manageEmployee",["data"=>$data,]);
             }else{
                 return redirect('/');
@@ -223,6 +247,7 @@ class AdminController extends Controller
                 $data=DB::table('departs')
                             ->leftJoin('employees', 'departs.head_id', '=', 'employees.id')
                                 ->select('departs.*','employees.name as empname')
+                                ->orderBy('departs.depname')
                                     ->get();
                 return view("admin/manageDeparts",["data"=>$data]);
             }else{
@@ -426,11 +451,9 @@ class AdminController extends Controller
             $admin = DB::table('users')->where('name',session('user'))->get();
             if($admin->count() > 0){
                 $depart = DB::table('departs')->where('id',$id)->get();
-                $head = DB::table('emp_depart')->where('dep_id',$id)->where('is_head',true)->get('emp_id');
-                if($head->count() == 0){
-                    $head = 0;
-                }else{ $head = $head[0]->emp_id; }
-                return view("admin/editDepart",['data' => $depart,'head' => $head]);
+                $employee = DB::table('employees')->where('depart',$id)->select("employees.id","employees.name")->get();
+                // $head = DB::table('emp_depart')->where('dep_id',$id)->where('is_head',true)->get('emp_id');
+                return view("admin/editDepart",['data' => $depart,'emps' => $employee,'head' => $depart[0]->head_id ]);
             }else{
                 return redirect('/');
             }
@@ -747,7 +770,7 @@ class AdminController extends Controller
         if(session('user') != null){
             $admin = DB::table('users')->where('name',session('user'))->get();
             if($admin->count() > 0){
-                $store_path = 'C:\xampp\htdocs\tracking\public\files/';
+                $store_path = 'C:\Users\moham\Documents\GitHub\Traking_Management_System\public\files/';
                 $pic_name = $_FILES['descrip']['name'];
                 $stor_name  = $request->name. '.'.explode('.',$pic_name)[1];
                 $stor_tmp = $_FILES['descrip']['tmp_name'];

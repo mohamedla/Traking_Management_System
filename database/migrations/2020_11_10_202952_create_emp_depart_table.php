@@ -17,6 +17,7 @@ class CreateEmpDepartTable extends Migration
             $table->foreignId('emp_id')->constrained('employees');
             $table->foreignId('dep_id')->constrained('departs');
             $table->boolean('is_head')->default(false);
+            $table->timestamps();
         });
     }
 

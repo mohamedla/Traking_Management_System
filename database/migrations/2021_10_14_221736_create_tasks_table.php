@@ -22,6 +22,7 @@ class CreateTasksTable extends Migration
             $table->date('endline');
             $table->tinyInteger('progress')->default(0);
             $table->string('descriFile');
+            $table->timestamps();
         });
     }
 

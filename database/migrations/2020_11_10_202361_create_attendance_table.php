@@ -20,6 +20,7 @@ class CreateAttendanceTable extends Migration
             $table->time('out_time')->nullable();
             $table->double('whours')->nullable();
             $table->string('status')->default('active');
+            $table->timestamps();
         });
     }
 

@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <meta name="csrf-token" content="{{{ csrf_token() }}}">
     <title>@yield('title')</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
@@ -140,7 +141,7 @@
                     </div>
                     <div>
                         <p id="logout">
-                            <i class="fa fa-sign-out" style="color: rgb(14, 199, 14);"></i>
+                            <i class="fas fa-sign-out-alt" style="color: #bd2130;"></i>
                             <span>Logout</span>
                             <side></side>
                         </p>
@@ -162,9 +163,10 @@
 </div>
     </div>
         <script src="{{asset('js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('js/jquery.min.js')}}"></script>
-    <script src="{{asset('js/propper.js')}}"></script>
-    <script src="{{asset('js/js.js')}}"></script>
+        <script src="{{asset('js/jquery.min.js')}}"></script>
+        <script src="{{asset('js/propper.js')}}"></script>
+        <script src="{{asset('js/js.js')}}"></script>
+        @yield('script')
 </body>
 
 </html>

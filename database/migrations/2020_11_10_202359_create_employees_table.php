@@ -15,7 +15,8 @@ class CreateEmployeesTable extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->string('username')->unique();
+            $table->string('name');
             $table->string('email')->unique();
             $table->string('pass');
             $table->string('img')->nullable();
@@ -26,6 +27,7 @@ class CreateEmployeesTable extends Migration
             $table->foreignId('depart')->constrained('departs');
             $table->string('status')->default('left');
             $table->tinyInteger('groubID')->default(0);
+            $table->timestamps();
         });
     }
 

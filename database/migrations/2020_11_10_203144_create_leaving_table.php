@@ -22,6 +22,7 @@ class CreateLeavingTable extends Migration
             $table->time('timeto');
             $table->date('day');
             $table->foreignId('emp_id')->constrained('employees');
+            $table->timestamps();
         });
     }
 

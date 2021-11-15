@@ -18,6 +18,7 @@ class CreateDepartsTable extends Migration
             $table->string('depname')->unique();
             $table->integer('head_id')->default(0);
             $table->integer('totemp')->default(0);
+            $table->timestamps();
         });
     }
 

@@ -98,7 +98,7 @@ function clock(){
    minute.style.transform=`rotateZ(${m}deg)`;
    second.style.transform=`rotateZ(${s}deg)`;
 }
-setInterval(clock);
+setInterval(clock,1000);
 // upload profile picture
 var profileImgs = document.getElementsByClassName("profile-img"),
     imgBox = document.getElementById("profile-img"),

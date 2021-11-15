@@ -51,7 +51,7 @@ class EmployeeController extends Controller
         if(session('user') != null){
             try {
                 
-                $store_path = 'C:\xampp\htdocs\tracking\public\images/';
+                $store_path = 'C:\Users\moham\Documents\GitHub\Traking_Management_System\public\images/';
                 $pic_name = $_FILES['pic']['name'];
                 $stor_name  = session('user'). '.'.explode('.',$pic_name)[1];
                 $stor_tmp = $_FILES['pic']['tmp_name'];
@@ -281,6 +281,7 @@ class EmployeeController extends Controller
     {
         session_start();
         if(session('user') != null){
+            $this->disconnect();
             session()->put('user',null);
             session()->put('id',null);
             session()->put('isStart',true);
@@ -288,6 +289,11 @@ class EmployeeController extends Controller
         }else{
             return redirect('/');
         }
+    }
+
+    public function disconnect()
+    {
+        DB::table('employees')->where("id", session('id'))->update(['status' => 'left']);
     }
 
     public function employeeDetails(Request $request)

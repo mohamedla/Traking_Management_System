@@ -1,9 +1,9 @@
 @extends('admin.header')
 
-@section('title', 'manage departs')
+@section('title', 'Manage Departs')
 
 @section('content')
-@section('subtitle', 'manage departs')
+@section('subtitle', 'Manage Departs')
 
 <div class="emp">
                     

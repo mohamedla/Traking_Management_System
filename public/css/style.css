@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 body{
     overflow-x: hidden;
     margin: 0;padding: 0;}
@@ -20,7 +21,9 @@ aside{
     transition: all 0.7s ease;
     background: rgb(11, 31, 97);
 }
-
+#fileimg{
+    overflow-y: auto;
+}
 .logo{
     background: #fff;
     height: 60px;
@@ -228,7 +231,7 @@ nav img{
     border: 1.4px solid rgb(19, 19, 104);
     border-radius: 4px;
     height: 28px;
-    width: 90px;
+    width: 30%;
 }
 .content .search{
     float: right;
@@ -238,7 +241,12 @@ nav img{
     width: 100%;
     overflow: auto;
 }
-
+#search-type{
+    width: auto;
+    background: none;
+    border-radius: 5px;
+    border: 1.5px solid #000;
+}
 .table thead{
     color: #fff;
     background:  rgb(24, 24, 102);

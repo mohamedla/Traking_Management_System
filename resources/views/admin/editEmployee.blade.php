@@ -12,12 +12,16 @@
                             <div class="col col-xl-6">
                                 <h6>Personal Details</h6>
                                 <hr>
+                                <label>User Name</label>
+                                <div class="input">
+                                    <i class="fa fa-user"></i>
+                                    <input type="text" name="username" value="{{$data[0]->username}}" required>
+                                </div><br>
                                 <label>Name</label>
                                 <div class="input">
                                     <i class="fa fa-user"></i>
                                     <input type="text" name="name" value="{{$data[0]->name}}" required>
                                 </div><br>
-                                
                                 <label>Birth Date</label>
                                 <div class="input">
                                     <input id = 'myDate' type="date" name="date" class="date" value="{{$data[0]->dob}}"  required>
@@ -39,7 +43,7 @@
                                             @if($dep->id == $data[0]->depart)
                                                 <option value="{{$dep->id}}" selected>{{$dep->depname}}</option>
                                             @else
-                                                <option value="{{$dep->id}}">{{$dep->name}}</option>
+                                                <option value="{{$dep->id}}">{{$dep->depname}}</option>
                                             @endif
                                         @endforeach
                                     </select><br>
@@ -65,7 +69,7 @@
                                 <label>Password</label>
                                 <div class="input">
                                     <i class="fa fa-key"></i>
-                                    <input type="password" name="pass" required>
+                                    <input type="password" name="pass">
                                 </div><br>
 
                             </div>
